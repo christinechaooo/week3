@@ -7,13 +7,24 @@
 //
 
 #import "AppDelegate.h"
+#import "HeadlineViewController.h"
+#import "MenuViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    
+    HeadlineViewController *vc = [[HeadlineViewController alloc] init];
+    self.window.rootViewController = vc;
+    
+    MenuViewController *menuvc = [[MenuViewController alloc] init];
+    
+    [self.window addSubview:menuvc.view];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
