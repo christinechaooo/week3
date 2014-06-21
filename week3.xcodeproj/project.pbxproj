@@ -19,6 +19,7 @@
 		7706B9DC1953B1290074CD48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7706B9C41953B1290074CD48 /* UIKit.framework */; };
 		7706B9E41953B1290074CD48 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7706B9E21953B1290074CD48 /* InfoPlist.strings */; };
 		7706B9E61953B1290074CD48 /* week3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7706B9E51953B1290074CD48 /* week3Tests.m */; };
+		7706B9F1195620900074CD48 /* HeadlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7706B9F0195620900074CD48 /* HeadlineViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		7706B9E11953B1290074CD48 /* week3Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "week3Tests-Info.plist"; sourceTree = "<group>"; };
 		7706B9E31953B1290074CD48 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7706B9E51953B1290074CD48 /* week3Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = week3Tests.m; sourceTree = "<group>"; };
+		7706B9EF195620900074CD48 /* HeadlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadlineViewController.h; sourceTree = "<group>"; };
+		7706B9F0195620900074CD48 /* HeadlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadlineViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				7706B9D01953B1290074CD48 /* AppDelegate.m */,
 				7706B9D21953B1290074CD48 /* Images.xcassets */,
 				7706B9C71953B1290074CD48 /* Supporting Files */,
+				7706B9EF195620900074CD48 /* HeadlineViewController.h */,
+				7706B9F0195620900074CD48 /* HeadlineViewController.m */,
 			);
 			path = week3;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7706B9D11953B1290074CD48 /* AppDelegate.m in Sources */,
+				7706B9F1195620900074CD48 /* HeadlineViewController.m in Sources */,
 				7706B9CD1953B1290074CD48 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
