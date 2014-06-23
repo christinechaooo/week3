@@ -57,15 +57,15 @@
     self.feedImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1444, 253)];
     self.feedImgView.image = feedImg;
     self.feedScrollView.contentSize = self.feedImgView.frame.size;
-//    self.feedImgView.userInteractionEnabled = YES;
+//    self.feedScrollView.userInteractionEnabled = YES;
     [self.feedScrollView addSubview:self.feedImgView];
     
     
-    UIPanGestureRecognizer *feedPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onFeedPan:)];
+//    UIPanGestureRecognizer *feedPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onFeedPan:)];
     
     [self.headlineImageView addGestureRecognizer:panGestureRecognizer];
     [self.headlineImageView addGestureRecognizer:tapGestureRecognizer];
-    [self.feedImgView addGestureRecognizer:feedPanGestureRecognizer];
+//    [self.feedScrollView addGestureRecognizer:feedPanGestureRecognizer];
     [self.view addSubview:self.headlineImageView];
     
     [self.headlineImageView addSubview:self.feedScrollView];
@@ -132,11 +132,11 @@
     } else if (sender.state == UIGestureRecognizerStateChanged) {
         CGFloat scale = (self.prevTouchPosition.y - touchPosition.y) / 568 + 1;
         NSLog(@"%f ", scale);
-        self.feedImgView.transform = CGAffineTransformMakeScale(scale,scale);
         self.feedScrollView.transform = CGAffineTransformMakeScale(scale,scale);
+        self.feedScrollView.contentSize = CGRectMake(0, 568 - self.feedScrollView.frame.size.height, 320, self.feedScrollView.frame.size.height).size;
     } else if (sender.state == UIGestureRecognizerStateEnded) {
         [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            self.feedImgView.transform = CGAffineTransformMakeScale(1,1);
+            self.feedScrollView.transform = CGAffineTransformMakeScale(1,1);
         } completion:nil];
     }*/
 }
