@@ -2,7 +2,7 @@
 
 ![Demo] (/screencap.gif?raw=true "Demo")
 
-Took 7 hours to complete.
+Took 6 hours to complete.
 
 ####Completed features
 - Dragging the headline should reveal the menu
