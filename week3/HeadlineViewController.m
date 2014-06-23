@@ -57,7 +57,7 @@
     self.feedImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1444, 253)];
     self.feedImgView.image = feedImg;
     self.feedScrollView.contentSize = self.feedImgView.frame.size;
-    self.feedImgView.userInteractionEnabled = YES;
+//    self.feedImgView.userInteractionEnabled = YES;
     [self.feedScrollView addSubview:self.feedImgView];
     
     
