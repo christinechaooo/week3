@@ -12,9 +12,14 @@
 @interface HeadlineViewController ()
 
 @property (assign,nonatomic) CGPoint offset;
+@property (assign,nonatomic) CGPoint feedOffset;
+@property (assign,nonatomic) CGPoint prevTouchPosition;
 @property (strong, nonatomic) UIImageView* headlineImageView;
+@property (strong, nonatomic) UIImageView* feedImgView;
+@property (strong, nonatomic) UIScrollView* feedScrollView;
 
 - (void)onHeadlineDrag:(UIPanGestureRecognizer *)sender;
+- (void)onFeedPan:(UIPanGestureRecognizer *)sender;
 - (void)onTap:(UITapGestureRecognizer *)sender;
 
 @end
@@ -46,20 +51,24 @@
     
     self.headlineImageView.userInteractionEnabled = YES;
     
-    UIScrollView *feedScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 315, 320, 253)];
+    self.feedScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 315, 320, 253)];
     
     UIImage *feedImg = [UIImage imageNamed:@"news"];
-    UIImageView *feedImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1444, 253)];
-    feedImgView.image = feedImg;
-    feedScrollView.contentSize = feedImgView.frame.size;
-    [feedScrollView addSubview:feedImgView];
+    self.feedImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1444, 253)];
+    self.feedImgView.image = feedImg;
+    self.feedScrollView.contentSize = self.feedImgView.frame.size;
+    self.feedImgView.userInteractionEnabled = YES;
+    [self.feedScrollView addSubview:self.feedImgView];
+    
+    
+    UIPanGestureRecognizer *feedPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onFeedPan:)];
     
     [self.headlineImageView addGestureRecognizer:panGestureRecognizer];
     [self.headlineImageView addGestureRecognizer:tapGestureRecognizer];
-
+    [self.feedImgView addGestureRecognizer:feedPanGestureRecognizer];
     [self.view addSubview:self.headlineImageView];
     
-    [self.headlineImageView addSubview:feedScrollView];
+    [self.headlineImageView addSubview:self.feedScrollView];
     
     
 }
@@ -75,16 +84,16 @@
     CGPoint gestureVelocity = [sender velocityInView:self.headlineImageView];
     
     if (sender.state == UIGestureRecognizerStateBegan ) {
-        
+        self.prevTouchPosition = [sender locationInView:self.view];
         self.offset = CGPointMake(0, touchPosition.y - self.headlineImageView.center.y);
         
     } else if (sender.state == UIGestureRecognizerStateChanged) {
-//        NSLog(@"%f ", self.headlineImageView.center.y);
+        NSLog(@"%f ", self.prevTouchPosition.y - touchPosition.y);
         
         if(self.headlineImageView.center.y >= 284) {
             self.headlineImageView.center = CGPointMake(160 , touchPosition.y - self.offset.y);
         } else {
-            self.headlineImageView.center = CGPointMake(160 , 283);
+            self.headlineImageView.center = CGPointMake(160 , 283 - (self.prevTouchPosition.y - touchPosition.y) * 0.2);
         }
         
         
@@ -111,6 +120,25 @@
                              }];
         }
     }
+}
+
+- (void)onFeedPan:(UIPanGestureRecognizer *)sender {
+    /*CGPoint touchPosition = [sender locationInView:self.feedImgView];
+    
+    if (sender.state == UIGestureRecognizerStateBegan ) {
+        self.prevTouchPosition = [sender locationInView:self.feedImgView];
+        self.feedOffset = CGPointMake(0, touchPosition.y - self.feedImgView.center.y);
+        
+    } else if (sender.state == UIGestureRecognizerStateChanged) {
+        CGFloat scale = (self.prevTouchPosition.y - touchPosition.y) / 568 + 1;
+        NSLog(@"%f ", scale);
+        self.feedImgView.transform = CGAffineTransformMakeScale(scale,scale);
+        self.feedScrollView.transform = CGAffineTransformMakeScale(scale,scale);
+    } else if (sender.state == UIGestureRecognizerStateEnded) {
+        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.feedImgView.transform = CGAffineTransformMakeScale(1,1);
+        } completion:nil];
+    }*/
 }
 
 - (void)onTap:(UITapGestureRecognizer *)sender {
